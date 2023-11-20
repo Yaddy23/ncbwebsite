@@ -177,3 +177,9 @@ form .text h3 a{
 form .text h3 a:hover{
   text-decoration: underline;
 }
+
+/****/
+.product-link {
+  text-decoration: none !important;
+  color: black !important;
+}
