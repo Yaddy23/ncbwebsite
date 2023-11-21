@@ -5,23 +5,25 @@ import slugify from "slugify";
 //add product
 export const createProductController = async (req, res) => {
     try {
-        const { name, description, price, category, quantity, shipping } = req.fields;
+        const { isbn, name, description, price, category, quantity, shipping } = req.fields;
 
         const { photo } = req.files;
 
         switch(true){
+            case !isbn: 
+                return res.status(401).send({ error: "Product ISBN is Required" });
             case !name:
-                return res.status(500).send({ error: "Product Name is Required" });
+                return res.status(401).send({ error: "Product Name is Required" });
             case !description:
-                return res.status(500).send({ error: "Product Description is Required" });
+                return res.status(401).send({ error: "Product Description is Required" });
             case !price:
-                return res.status(500).send({ error: "Product Price is Required" });
+                return res.status(401).send({ error: "Product Price is Required" });
             case !category:
-                return res.status(500).send({ error: "Product Category is Required" });
+                return res.status(401).send({ error: "Product Category is Required" });
             case !quantity:
-                return res.status(500).send({ error: "Product Quantity is Required" });
+                return res.status(401).send({ error: "Product Quantity is Required" });
             case photo && photo.size > 1000000:
-                return res.status(500).send({ error: "Product Photo is Required and should be less than 1mb" })
+                return res.status(401).send({ error: "Product Photo is Required and should be less than 1mb" });
         }
 
         const products = new productModel({...req.fields, slug:slugify(name)})

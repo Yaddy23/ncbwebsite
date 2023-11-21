@@ -11,6 +11,7 @@ const {Option} = Select
 const AddProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [isbn, setISBN] = useState("")
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -28,7 +29,7 @@ const AddProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something wwent wrong in getting category");
     }
   };
 
@@ -41,13 +42,14 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       const productData = new FormData();
+      productData.append("isbn", isbn);
       productData.append("name", name);
       productData.append("description", description);
       productData.append("price", price);
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
-      const { data } = axios.post(
+      const { data } = await axios.post(
         "/api/v1/product/create-product",
         productData
       );
@@ -115,9 +117,18 @@ const AddProduct = () => {
               </div>
               <div className="mb-3">
                 <input
+                  type="number"
+                  value={isbn}
+                  placeholder="Enter Product ISBN"
+                  className="form-control"
+                  onChange={(e) => setISBN(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <input
                   type="text"
                   value={name}
-                  placeholder="write a name"
+                  placeholder="Enter Product Name"
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -126,7 +137,7 @@ const AddProduct = () => {
                 <textarea
                   type="text"
                   value={description}
-                  placeholder="write a description"
+                  placeholder="Enter Product Description"
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -136,7 +147,7 @@ const AddProduct = () => {
                 <input
                   type="number"
                   value={price}
-                  placeholder="write a Price"
+                  placeholder="Enter Product Price"
                   className="form-control"
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -145,7 +156,7 @@ const AddProduct = () => {
                 <input
                   type="number"
                   value={quantity}
-                  placeholder="write a quantity"
+                  placeholder="Enter Product Quantity"
                   className="form-control"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
@@ -153,7 +164,7 @@ const AddProduct = () => {
               <div className="mb-3">
                 <Select
                   bordered={false}
-                  placeholder="Select Shipping "
+                  placeholder="Select Shipping"
                   size="large"
                   showSearch
                   className="form-select mb-3"
