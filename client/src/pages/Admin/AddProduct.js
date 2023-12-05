@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react'
-import Layout from '../../components/Layout'
-import toast from 'react-hot-toast'
-import axios from 'axios'
-import AdminMenu from '../../components/AdminMenu'
-import { Select } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import Layout from "../../components/Layout";
+import toast from "react-hot-toast";
+import axios from "axios";
+import AdminMenu from "../../components/AdminMenu";
+import { Select } from "antd";
+import { useNavigate } from "react-router-dom";
 
-const {Option} = Select
+const { Option } = Select;
 
 const AddProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
-  const [isbn, setISBN] = useState("")
+  const [isbn, setISBN] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -54,9 +54,9 @@ const AddProduct = () => {
         productData
       );
       if (data?.success) {
-        toast.error(data?.message);
+        toast.success(data?.message);
       } else {
-        toast.success("Product Created Successfully");
+        toast.error("Product Adding Failed");
         navigate("/dashboard/admin/products");
       }
     } catch (error) {
@@ -67,14 +67,14 @@ const AddProduct = () => {
 
   return (
     <Layout title={"Add Product"}>
-        <div className="container-fluid m-3 p-3"> 
+      <div className="container-fluid m-3 p-3">
         <div className="row">
-            <div className="col-md-3">
-                <AdminMenu /> 
-            </div>
-            <div className="col-md-9">
-                <h1>Add Products</h1>
-                <div className="m-1 w-75">
+          <div className="col-md-3">
+            <AdminMenu />
+          </div>
+          <div className="col-md-9">
+            <h1>Add Products</h1>
+            <div className="m-1 w-75">
               <Select
                 bordered={false}
                 placeholder="Select a category"
@@ -182,11 +182,11 @@ const AddProduct = () => {
                 </button>
               </div>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default AddProduct
+export default AddProduct;
