@@ -22,13 +22,14 @@ const Policy = lazy(() => import("./pages/Policy"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Register = lazy(() => import("./pages/Auth/Register"));
 const ForgottenPassword = lazy(() => import("./pages/Auth/ForgottenPassword"));
-
+const Search = lazy(() => import("./pages/Search"));
 function App() {
   return (
     <>
       <Suspense fallback={"Loading..."}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<Dashboard />} />
             <Route path="user/orders" element={<Orders />} />

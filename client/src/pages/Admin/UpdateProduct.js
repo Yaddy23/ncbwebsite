@@ -10,6 +10,7 @@ const { Option } = Select;
 const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const [isbn, setISBN] = useState("");
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -26,6 +27,7 @@ const UpdateProduct = () => {
       const { data } = await axios.get(
         `/api/v1/product/get-product/${params.slug}`
       );
+      setISBN(data.product.isbn);
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
@@ -64,6 +66,7 @@ const UpdateProduct = () => {
     e.preventDefault();
     try {
       const productData = new FormData();
+      productData.append("isbn", isbn);
       productData.append("name", name);
       productData.append("description", description);
       productData.append("price", price);
@@ -77,8 +80,8 @@ const UpdateProduct = () => {
       if (data?.success) {
         toast.error(data?.message);
       } else {
-        toast.success("Product Updated Successfully");
         navigate("/dashboard/admin/products");
+        toast.success("Product Updated Successfully");
       }
     } catch (error) {
       console.log(error);
@@ -97,8 +100,8 @@ const UpdateProduct = () => {
       if (data?.success) {
         toast.error(data?.message);
       } else {
-      toast.success("Product Removed Successfully");
-      navigate("/dashboard/admin/products");
+        toast.success("Product Removed Successfully");
+        navigate("/dashboard/admin/products");
       }
     } catch (error) {
       console.log(error);
@@ -164,6 +167,15 @@ const UpdateProduct = () => {
                     />
                   </div>
                 )}
+              </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  value={isbn}
+                  placeholder="Enter Updated ISBN"
+                  className="form-control"
+                  onChange={(e) => setISBN(e.target.value)}
+                />
               </div>
               <div className="mb-3">
                 <input

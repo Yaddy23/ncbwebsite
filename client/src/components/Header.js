@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useAuth } from "../context/auth";
 import toast from "react-hot-toast";
 import ncblogo from "../images/ncblogo.png";
+import SearchInput from "./Form/SearchInput.js";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -37,6 +38,7 @@ const Header = () => {
             New Century Books
           </Link>
           <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+            <SearchInput />
             <li className="nav-item">
               <NavLink to="/" className="nav-link">
                 Home

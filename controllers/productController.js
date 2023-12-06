@@ -31,6 +31,15 @@ export const createProductController = async (req, res) => {
         });
     }
 
+    const duplicateISBN = await productModel.findOne({ isbn });
+
+    if (duplicateISBN) {
+      return res.status(200).send({
+        success: false,
+        message: "Product ISBN Already Exist",
+      });
+    }
+
     const products = new productModel({ ...req.fields, slug: slugify(name) });
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
@@ -245,6 +254,30 @@ export const productListController = async (req, res) => {
     res.status(400).send({
       success: false,
       message: "error in per page ctrl",
+      error,
+    });
+  }
+};
+
+//search product
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const resutls = await productModel
+      .find({
+        $or: [
+          { isbn: { $regex: keyword, $options: "i" } },
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+    res.json(resutls);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error In Search Product API",
       error,
     });
   }

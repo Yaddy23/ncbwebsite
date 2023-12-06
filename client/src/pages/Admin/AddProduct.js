@@ -56,8 +56,8 @@ const AddProduct = () => {
       if (data?.success) {
         toast.success(data?.message);
       } else {
-        toast.error("Product Adding Failed");
-        navigate("/dashboard/admin/products");
+        toast.error(data?.message);
+        //navigate("/dashboard/admin/products");
       }
     } catch (error) {
       console.log(error);
@@ -117,7 +117,7 @@ const AddProduct = () => {
               </div>
               <div className="mb-3">
                 <input
-                  type="number"
+                  type="text"
                   value={isbn}
                   placeholder="Enter Product ISBN"
                   className="form-control"
