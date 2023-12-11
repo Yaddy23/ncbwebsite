@@ -55,6 +55,13 @@ const AddProduct = () => {
       );
       if (data?.success) {
         toast.success(data?.message);
+        setISBN("");
+        setName("");
+        setDescription("");
+        setPrice("");
+        setQuantity("");
+        setPhoto("");
+        setCategory("");
       } else {
         toast.error(data?.message);
         //navigate("/dashboard/admin/products");

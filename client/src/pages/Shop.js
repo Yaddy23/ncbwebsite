@@ -37,11 +37,11 @@ const Shop = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
-      setLoading(false);
       setProducts(data.products);
     } catch (error) {
-      setLoading(false);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -141,7 +141,7 @@ const Shop = () => {
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "20rem" }}>
+              <div key={p._id} className="card m-2" style={{ width: "20rem" }}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -155,12 +155,14 @@ const Shop = () => {
                   </p>
                   <p className="card-text">PHP {p.price}</p>
                   <button
-                    class="btn btn-primary ms-2"
+                    className="btn btn-primary ms-2"
                     onClick={() => navigate(`/product/${p.slug}`)}
                   >
                     MORE DETAILS
                   </button>
-                  <button class="btn btn-secondary ms-1">ADD TO CART</button>
+                  <button className="btn btn-secondary ms-1">
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}
