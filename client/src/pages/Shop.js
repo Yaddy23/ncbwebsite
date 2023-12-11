@@ -4,6 +4,7 @@ import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import toast from "react-hot-toast";
 import { Prices } from "../components/Prices";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +14,7 @@ const Shop = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   //get all cat
   const getAllCategory = async () => {
@@ -139,7 +141,7 @@ const Shop = () => {
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }}>
+              <div className="card m-2" style={{ width: "20rem" }}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -152,7 +154,12 @@ const Shop = () => {
                     {p.description.substring(0, 30)}...
                   </p>
                   <p className="card-text">PHP {p.price}</p>
-                  <button class="btn btn-primary ms-1">More Details</button>
+                  <button
+                    class="btn btn-primary ms-2"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    MORE DETAILS
+                  </button>
                   <button class="btn btn-secondary ms-1">ADD TO CART</button>
                 </div>
               </div>
