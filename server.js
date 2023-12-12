@@ -7,6 +7,7 @@ import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import cors from "cors";
+import compression from "compression";
 //configure env
 dotenv.config();
 
@@ -17,6 +18,7 @@ connectDb();
 const app = express();
 
 //middlewares
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
