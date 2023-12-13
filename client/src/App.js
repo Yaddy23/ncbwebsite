@@ -14,6 +14,8 @@ import UpdateProduct from "./pages/Admin/UpdateProduct";
 import React, { lazy, Suspense } from "react";
 import ProductDetails from "./pages/ProductDetails";
 
+const CategoryProduct = lazy(() => import("./pages/CategoryProduct"));
+const Categories = lazy(() => import("./pages/Categories"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Login = lazy(() => import("./pages/Auth/Login"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -31,6 +33,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/category/:slug" element={<CategoryProduct />} />
           <Route path="/search" element={<Search />} />
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<Dashboard />} />
