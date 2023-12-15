@@ -19,7 +19,24 @@ const Shop = () => {
   const [selectedProductQuantity, setSelectedProductQuantity] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {}, [selectedProductQuantity]);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleIncrement = (productId) => {
+    setSelectedProductQuantity((prev) => ({
+      ...prev,
+      [productId]: (prev[productId] || 0) + 1,
+    }));
+  };
+
+  const handleDecrement = (productId) => {
+    if (quantity > 1) {
+      setSelectedProductQuantity((prev) => ({
+        ...prev,
+        [productId]: (prev[productId] || 1) - 1,
+      }));
+    }
+  };
+
   //get all cat
   const getAllCategory = async () => {
     try {
@@ -94,7 +111,7 @@ const Shop = () => {
     if (checked.length || radio.length) filterProduct();
   }, [checked, radio]);
 
-  //get filterd product
+  //get filtered product
   const filterProduct = async () => {
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
@@ -162,12 +179,7 @@ const Shop = () => {
                   <div className="d-flex align-items-center mb-2">
                     <button
                       className="btn btn-sm btn-outline-secondary me-2"
-                      onClick={() => {
-                        const newQuantity = selectedProductQuantity - 1;
-                        if (newQuantity >= 1) {
-                          setSelectedProductQuantity(newQuantity);
-                        }
-                      }}
+                      onClick={() => handleDecrement(p._id)}
                     >
                       -
                     </button>
@@ -175,19 +187,12 @@ const Shop = () => {
                       type="number"
                       min="1"
                       value={selectedProductQuantity[p._id] || 1}
-                      onChange={(e) => {
-                        const newQuantities = { ...selectedProductQuantity };
-                        newQuantities[p._id] = parseInt(e.target.value, 10);
-                        setSelectedProductQuantity(newQuantities);
-                      }}
+                      readOnly
                       className="form-control me-2 input-smaller"
                     />
                     <button
                       className="btn btn-sm btn-outline-secondary"
-                      onClick={() => {
-                        const newQuantity = selectedProductQuantity + 1;
-                        setSelectedProductQuantity(newQuantity);
-                      }}
+                      onClick={() => handleIncrement(p._id)}
                     >
                       +
                     </button>
