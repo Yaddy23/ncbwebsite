@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&family=Roboto&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,22 +13,21 @@ font-family: 'Times New Roman', Times, serif; */
 
 /* navbar */
 
-.navbar{
-  font-family: 'Times New Roman', Times, serif;
+.navbar {
+  font-family: "Times New Roman", Times, serif;
   font-size: 17px;
   line-height: 26px;
   text-transform: uppercase;
 }
 
-.navbar-brand{
+.navbar-brand {
   color: red;
   font-size: 22px;
   letter-spacing: 2px;
 }
 
-.nav-link{
+.nav-link {
   font-weight: 300 !important;
-
 }
 
 .active {
@@ -37,25 +36,21 @@ font-family: 'Times New Roman', Times, serif; */
 
 /* footer */
 
-.footer{
+.footer {
   color: white;
   padding: 25px;
   background: red;
-  background: -webkit-linear-gradient(
-    to right,
-    #e20505,
-    #ff0000
-  );
+  background: -webkit-linear-gradient(to right, #e20505, #ff0000);
   background: linear-gradient(to right, #e20505, #ff0000);
 }
 
-.footer a{
+.footer a {
   text-decoration: none;
   color: white;
   padding: 10px;
 }
 
-.footer a:hover{
+.footer a:hover {
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
 }
@@ -70,16 +65,16 @@ font-family: 'Times New Roman', Times, serif; */
   justify-content: center;
 }
 
-.pnf-title{
+.pnf-title {
   font-size: 100px;
   font-weight: 700;
 }
 
-.pnf-heading{
+.pnf-heading {
   font-weight: normal;
 }
 
-.pnf-btn{
+.pnf-btn {
   color: black;
   border: 1px solid black;
   text-decoration: none;
@@ -99,7 +94,7 @@ font-family: 'Times New Roman', Times, serif; */
 
 /* register */
 
-.wrapper{
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,13 +102,13 @@ font-family: 'Times New Roman', Times, serif; */
   flex-direction: column;
   background: #fff;
 }
-.wrapper h2{
+.wrapper h2 {
   font-size: 22px;
   font-weight: 600;
   color: #333;
 }
-.wrapper h2::before{
-  content: '';
+.wrapper h2::before {
+  content: "";
   left: 0;
   bottom: 0;
   height: 3px;
@@ -121,14 +116,14 @@ font-family: 'Times New Roman', Times, serif; */
   border-radius: 12px;
   background: #4070f4;
 }
-.wrapper form{
+.wrapper form {
   margin-top: 30px;
 }
-.wrapper form .input-box{
+.wrapper form .input-box {
   height: 52px;
   margin: 18px 0;
 }
-form .input-box input{
+form .input-box input {
   height: 100%;
   width: 100%;
   outline: none;
@@ -136,45 +131,45 @@ form .input-box input{
   font-size: 17px;
   font-weight: 500;
   color: #333;
-  border: 1.5px solid #C7BEBE;
+  border: 1.5px solid #c7bebe;
   border-bottom-width: 2.5px;
   border-radius: 6px;
   transition: all 0.3s ease;
 }
 .input-box input:focus,
-.input-box input:valid{
+.input-box input:valid {
   border-color: #4070f4;
 }
-form .policy{
+form .policy {
   display: flex;
   align-items: center;
 }
-form h3{
+form h3 {
   color: #707070;
   font-size: 14px;
   font-weight: 500;
   margin-left: 10px;
 }
-.input-box.button input{
+.input-box.button input {
   color: #fff;
   letter-spacing: 1px;
   border: none;
   background: #f44040;
   cursor: pointer;
 }
-.input-box.button input:hover{
-  background: rgb(253, 0, 34)
+.input-box.button input:hover {
+  background: rgb(253, 0, 34);
 }
-form .text h3{
- color: #333;
- width: 100%;
- text-align: center;
+form .text h3 {
+  color: #333;
+  width: 100%;
+  text-align: center;
 }
-form .text h3 a{
+form .text h3 a {
   color: #4070f4;
   text-decoration: none;
 }
-form .text h3 a:hover{
+form .text h3 a:hover {
   text-decoration: underline;
 }
 
@@ -182,4 +177,16 @@ form .text h3 a:hover{
 .product-link {
   text-decoration: none !important;
   color: black !important;
+}
+
+/*input*/
+.input-smaller {
+  width: 60px;
+  font-size: 12px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

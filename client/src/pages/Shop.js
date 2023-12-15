@@ -16,8 +16,10 @@ const Shop = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [selectedProductQuantity, setSelectedProductQuantity] = useState({});
   const navigate = useNavigate();
 
+  useEffect(() => {}, [selectedProductQuantity]);
   //get all cat
   const getAllCategory = async () => {
     try {
@@ -104,6 +106,7 @@ const Shop = () => {
       console.log(error);
     }
   };
+
   return (
     <Layout title={"All Products "}>
       <div className="container-fluid row mt-3">
@@ -156,6 +159,39 @@ const Shop = () => {
                     {p.description.substring(0, 30)}...
                   </p>
                   <p className="card-text">PHP {p.price}</p>
+                  <div className="d-flex align-items-center mb-2">
+                    <button
+                      className="btn btn-sm btn-outline-secondary me-2"
+                      onClick={() => {
+                        const newQuantity = selectedProductQuantity - 1;
+                        if (newQuantity >= 1) {
+                          setSelectedProductQuantity(newQuantity);
+                        }
+                      }}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      min="1"
+                      value={selectedProductQuantity[p._id] || 1}
+                      onChange={(e) => {
+                        const newQuantities = { ...selectedProductQuantity };
+                        newQuantities[p._id] = parseInt(e.target.value, 10);
+                        setSelectedProductQuantity(newQuantities);
+                      }}
+                      className="form-control me-2 input-smaller"
+                    />
+                    <button
+                      className="btn btn-sm btn-outline-secondary"
+                      onClick={() => {
+                        const newQuantity = selectedProductQuantity + 1;
+                        setSelectedProductQuantity(newQuantity);
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
                   <button
                     className="btn btn-primary ms-2"
                     onClick={() => navigate(`/product/${p.slug}`)}
@@ -165,8 +201,20 @@ const Shop = () => {
                   <button
                     className="btn btn-secondary ms-1"
                     onClick={() => {
-                      setCart([...cart, p]);
-                      toast.success("Item Added to Cart");
+                      const quantityToAdd = selectedProductQuantity[p._id] || 1;
+                      const index = cart.findIndex(
+                        (item) => item._id === p._id
+                      );
+
+                      if (index !== -1) {
+                        const updatedCart = [...cart];
+                        updatedCart[index].quantity += quantityToAdd;
+                        setCart(updatedCart);
+                      } else {
+                        setCart([...cart, { ...p, quantity: quantityToAdd }]);
+                      }
+
+                      toast.success("Item Added To Cart");
                     }}
                   >
                     ADD TO CART

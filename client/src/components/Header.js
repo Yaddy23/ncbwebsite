@@ -7,10 +7,10 @@ import ncblogo from "../images/ncblogo.png";
 import SearchInput from "./Form/SearchInput.js";
 import useCategory from "../hooks/useCategory.js";
 import { useCart } from "../context/cart.js";
-import { Badge, Space } from "antd";
+import { Badge } from "antd";
 
 const Header = () => {
-  const [cart, setCart] = useCart();
+  const [cart] = useCart();
   const [auth, setAuth] = useAuth();
   const categories = useCategory();
 

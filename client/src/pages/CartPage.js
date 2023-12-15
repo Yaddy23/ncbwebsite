@@ -4,7 +4,7 @@ import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 const CartPage = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const CartPage = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total = total + item.price;
+        total = total + item.price * item.quantity;
       });
       return total.toLocaleString("en-US", {
         style: "currency",
@@ -69,6 +69,7 @@ const CartPage = () => {
                   <p>{p.name}</p>
                   <p>{p.description.substring(0, 30)}</p>
                   <p>Price : {p.price}</p>
+                  <p>Quantity : {p.quantity}</p>
                   <button
                     className="btn btn-danger"
                     onClick={() => removeCartItem(p._id)}
