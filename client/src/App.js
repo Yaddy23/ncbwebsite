@@ -14,6 +14,7 @@ import UpdateProduct from "./pages/Admin/UpdateProduct";
 import React, { lazy, Suspense } from "react";
 import ProductDetails from "./pages/ProductDetails";
 
+const CartPage = lazy(() => import("./pages/CartPage"));
 const CategoryProduct = lazy(() => import("./pages/CategoryProduct"));
 const Categories = lazy(() => import("./pages/Categories"));
 const Shop = lazy(() => import("./pages/Shop"));
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/category/:slug" element={<CategoryProduct />} />
           <Route path="/search" element={<Search />} />
           <Route path="/dashboard" element={<PrivateRoute />}>

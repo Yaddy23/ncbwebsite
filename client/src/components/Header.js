@@ -6,8 +6,11 @@ import toast from "react-hot-toast";
 import ncblogo from "../images/ncblogo.png";
 import SearchInput from "./Form/SearchInput.js";
 import useCategory from "../hooks/useCategory.js";
+import { useCart } from "../context/cart.js";
+import { Badge, Space } from "antd";
 
 const Header = () => {
+  const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
   const categories = useCategory();
 
@@ -124,9 +127,11 @@ const Header = () => {
               </>
             )}
             <li className="nav-item">
-              <NavLink to="/cart" className="nav-link">
-                Cart (0) <FaShoppingCart />
-              </NavLink>
+              <Badge count={cart?.length} showZero>
+                <NavLink to="/cart" className="nav-link">
+                  <FaShoppingCart />
+                </NavLink>
+              </Badge>
             </li>
           </ul>
           {/* <form className="form-inline my-2 my-lg-0">
