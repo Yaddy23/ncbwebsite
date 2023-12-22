@@ -187,7 +187,13 @@ const Shop = () => {
                       type="number"
                       min="1"
                       value={selectedProductQuantity[p._id] || 1}
-                      readOnly
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value, 10);
+                        setSelectedProductQuantity((prevQuantities) => ({
+                          ...prevQuantities,
+                          [p._id]: value || 1,
+                        }));
+                      }}
                       className="form-control me-2 input-smaller"
                     />
                     <button
