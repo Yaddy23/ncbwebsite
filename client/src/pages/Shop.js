@@ -175,7 +175,7 @@ const Shop = () => {
                   <p className="card-text">
                     {p.description.substring(0, 30)}...
                   </p>
-                  <p className="card-text">PHP {p.price}</p>
+                  <p className="card-text">${p.price}</p>
                   <div className="d-flex align-items-center mb-2">
                     <button
                       className="btn btn-sm btn-outline-secondary me-2"
