@@ -116,7 +116,7 @@ export const getSingleProductController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Eror while getitng single product",
+      message: "Error while getitng single product",
       error,
     });
   }
@@ -360,9 +360,9 @@ export const braintreeTokenController = async (req, res) => {
 };
 
 //payment
-export const braintreePaymentController = async (req, res) => {
+export const brainTreePaymentController = async (req, res) => {
   try {
-    const { cart, nonce } = req.body;
+    const { nonce, cart } = req.body;
     let total = 0;
     cart.map((i) => {
       total += i.price;
