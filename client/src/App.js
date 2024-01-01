@@ -1,19 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-
-import PrivateRoute from "./components/Routes/Private";
-import Dashboard from "./user/Dashboard";
-import AdminRoute from "./components/Routes/AdminRoute";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import AddCategory from "./pages/Admin/AddCategory";
-import AddProduct from "./pages/Admin/AddProduct";
-import Users from "./pages/Admin/Users";
-import Orders from "./user/Orders";
-import Profile from "./user/Profile";
-import Products from "./pages/Admin/Products";
-import UpdateProduct from "./pages/Admin/UpdateProduct";
 import React, { lazy, Suspense } from "react";
-import ProductDetails from "./pages/ProductDetails";
+import PrivateRoute from "./components/Routes/Private";
+import AdminRoute from "./components/Routes/AdminRoute";
 
+const Dashboard = lazy(() => import("./user/Dashboard"));
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const AddCategory = lazy(() => import("./pages/Admin/AddCategory"));
+const AddProduct = lazy(() => import("./pages/Admin/AddProduct"));
+const Users = lazy(() => import("./pages/Admin/Users"));
+const Orders = lazy(() => import("./user/Orders"));
+const Profile = lazy(() => import("./user/Profile"));
+const Products = lazy(() => import("./pages/Admin/Products"));
+const UpdateProduct = lazy(() => import("./pages/Admin/UpdateProduct"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 const CartPage = lazy(() => import("./pages/CartPage"));
 const CategoryProduct = lazy(() => import("./pages/CategoryProduct"));
 const Categories = lazy(() => import("./pages/Categories"));
@@ -27,6 +26,7 @@ const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Register = lazy(() => import("./pages/Auth/Register"));
 const ForgottenPassword = lazy(() => import("./pages/Auth/ForgottenPassword"));
 const Search = lazy(() => import("./pages/Search"));
+const AdminOrders = lazy(() => import("./pages/Admin/AdminOrders"));
 function App() {
   return (
     <>
@@ -50,6 +50,7 @@ function App() {
             <Route path="admin/add-product" element={<AddProduct />} />
             <Route path="admin/product/:slug" element={<UpdateProduct />} />
             <Route path="admin/view-users" element={<Users />} />
+            <Route path="admin/orders" element={<AdminOrders />}></Route>
           </Route>
 
           <Route path="/forgot-password" element={<ForgottenPassword />} />
