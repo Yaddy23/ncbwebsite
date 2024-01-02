@@ -19,6 +19,7 @@ const AdminOrders = () => {
   const [changeStatus, setChangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/all-orders");
@@ -97,7 +98,7 @@ const AdminOrders = () => {
                             className="card-img-top"
                             alt={p.name}
                             width="100px"
-                            height={"100px"}
+                            height={"160px"}
                           />
                         </div>
                         <div className="col-md-8">
