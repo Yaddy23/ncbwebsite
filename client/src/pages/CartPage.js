@@ -85,7 +85,7 @@ const CartPage = () => {
             </h1>
             <h4 className="text-center">
               {cart?.length
-                ? `You Have ${cart.length} items in your cart ${
+                ? `You Have ${cart.length} item\\'s in your cart ${
                     auth?.token ? "" : "please login to checkout"
                   }`
                 : " Your Cart Is Empty"}
@@ -128,7 +128,7 @@ const CartPage = () => {
             {auth?.user?.address ? (
               <>
                 <div className="mb-3">
-                  <h4>Current Address</h4>
+                  <h4>Current Address: </h4>
                   <h5>{auth?.user?.address}</h5>
                   <button
                     className="btn btn-outline-warning"
@@ -169,9 +169,9 @@ const CartPage = () => {
                   <DropIn
                     options={{
                       authorization: clientToken,
-                      paypal: {
-                        flow: "vault",
-                      },
+                      // paypal: {
+                      //   flow: "vault", // not working atm
+                      // },
                     }}
                     onInstance={(instance) => setInstance(instance)}
                   />

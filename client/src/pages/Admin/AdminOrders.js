@@ -61,7 +61,7 @@ const AdminOrders = () => {
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
                       </tr>
@@ -104,6 +104,7 @@ const AdminOrders = () => {
                         <div className="col-md-8">
                           <p>{p.name}</p>
                           <p>{p.description.substring(0, 30)}</p>
+                          <p>Quantity : {p.quantity}</p>
                           <p>Price : {p.price}</p>
                         </div>
                       </div>

@@ -175,6 +175,7 @@ const Shop = () => {
                   <p className="card-text">
                     {p.description.substring(0, 30)}...
                   </p>
+                  <p className="cart-text">Product Quantity: {p.quantity}</p>
                   <p className="card-text">${p.price}</p>
                   <div className="d-flex align-items-center mb-2">
                     <button
@@ -216,16 +217,18 @@ const Shop = () => {
                       const index = cart.findIndex(
                         (item) => item._id === p._id
                       );
-
-                      if (index !== -1) {
-                        const updatedCart = [...cart];
-                        updatedCart[index].quantity += quantityToAdd;
-                        setCart(updatedCart);
+                      if (quantityToAdd <= p.quantity) {
+                        if (index !== -1) {
+                          const updatedCart = [...cart];
+                          updatedCart[index].quantity += quantityToAdd;
+                          setCart(updatedCart);
+                        } else {
+                          setCart([...cart, { ...p, quantity: quantityToAdd }]);
+                        }
+                        toast.success("Item Added To Cart");
                       } else {
-                        setCart([...cart, { ...p, quantity: quantityToAdd }]);
+                        toast.error("Invalid Quantity to Order");
                       }
-
-                      toast.success("Item Added To Cart");
                     }}
                   >
                     ADD TO CART
