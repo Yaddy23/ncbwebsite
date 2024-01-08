@@ -48,7 +48,7 @@ const Orders = () => {
                         <td>{i + 1}</td>
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.firstName}</td>
-                        <td>{moment(o?.createAt).fromNow()}</td>
+                        <td>{moment(o?.createdAt).fromNow()}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>
                           {o?.products?.reduce((acc, p) => acc + p.quantity, 0)}
@@ -58,10 +58,13 @@ const Orders = () => {
                   </table>
                   <div className="container">
                     {o?.products?.map((p, j) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                      <div
+                        className="row mb-2 p-3 card flex-row"
+                        key={p.product._id}
+                      >
                         <div className="col-md-4">
                           <img
-                            src={`/api/v1/product/product-photo/${p._id}`}
+                            src={`/api/v1/product/product-photo/${p.product._id}`}
                             className="card-img-top"
                             alt={p.name}
                             width="100px"
@@ -69,9 +72,9 @@ const Orders = () => {
                           />
                         </div>
                         <div className="col-md-8">
-                          <p>{p.name}</p>
-                          <p>{p.description.substring(0, 30)}</p>
-                          <p>Price: {p.price}</p>
+                          <p>{p.product.name}</p>
+                          <p>{p.product.description.substring(0, 30)}</p>
+                          <p>Price: {p.product.price}</p>
                           <p>Quantity: {p.quantity}</p>
                         </div>
                       </div>
