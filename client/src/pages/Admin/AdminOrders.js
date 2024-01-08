@@ -91,10 +91,13 @@ const AdminOrders = () => {
                   </table>
                   <div className="container">
                     {o?.products?.map((p, i) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                      <div
+                        className="row mb-2 p-3 card flex-row"
+                        key={p.product._id}
+                      >
                         <div className="col-md-4">
                           <img
-                            src={`/api/v1/product/product-photo/${p._id}`}
+                            src={`/api/v1/product/product-photo/${p.product._id}`}
                             className="card-img-top"
                             alt={p.name}
                             width="100px"
@@ -102,10 +105,10 @@ const AdminOrders = () => {
                           />
                         </div>
                         <div className="col-md-8">
-                          <p>{p.name}</p>
-                          <p>{p.description.substring(0, 30)}</p>
+                          <p>{p.product.name}</p>
+                          <p>{p.product.description.substring(0, 30)}</p>
                           <p>Quantity : {p.quantity}</p>
-                          <p>Price : {p.price}</p>
+                          <p>Price : {p.product.price}</p>
                         </div>
                       </div>
                     ))}
