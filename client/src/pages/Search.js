@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import { useSearch } from "../context/search";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+
 const Search = () => {
   const [values, setValues] = useSearch();
+  const [cart, setCart] = useCart();
+  const [selectedProductQuantity, setSelectedProductQuantity] = useState({});
+
   return (
     <Layout title={"Search results"}>
       <div className="container">
@@ -28,7 +34,29 @@ const Search = () => {
                   </p>
                   <p className="card-text"> $ {p.price}</p>
                   <button class="btn btn-primary ms-1">More Details</button>
-                  <button class="btn btn-secondary ms-1">ADD TO CART</button>
+                  <button
+                    class="btn btn-secondary ms-1"
+                    onClick={() => {
+                      const quantityToAdd = selectedProductQuantity[p._id] || 1;
+                      const index = cart.findIndex(
+                        (item) => item._id === p._id
+                      );
+                      if (quantityToAdd <= p.quantity) {
+                        if (index !== -1) {
+                          const updatedCart = [...cart];
+                          updatedCart[index].quantity += quantityToAdd;
+                          setCart(updatedCart);
+                        } else {
+                          setCart([...cart, { ...p, quantity: quantityToAdd }]);
+                        }
+                        toast.success("Item Added To Cart");
+                      } else {
+                        toast.error("Invalid Quantity to Order");
+                      }
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}

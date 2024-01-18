@@ -42,7 +42,7 @@ const Header = () => {
             <img src={ncblogo} width={100} height={60} alt="broken" />
             New Century Books
           </Link>
-          <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+          <ul className="navbar-nav ms-auto mt-2 mt-lg-0 p-3">
             <SearchInput />
             <li className="nav-item">
               <NavLink to="/" className="nav-link">
@@ -134,10 +134,6 @@ const Header = () => {
               </Badge>
             </li>
           </ul>
-          {/* <form className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> 
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> */}
         </div>
       </nav>
     </>

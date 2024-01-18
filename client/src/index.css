@@ -16,7 +16,7 @@ font-family: 'Times New Roman', Times, serif; */
 .navbar {
   font-family: "Times New Roman", Times, serif;
   font-size: 17px;
-  line-height: 26px;
+  line-height: 20px;
   text-transform: uppercase;
 }
 
@@ -189,4 +189,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/*header*/
+.header {
+  overflow: hidden;
+  padding: 20px 10px;
 }
