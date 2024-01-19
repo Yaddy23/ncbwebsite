@@ -201,6 +201,42 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
+//update specific user
+export const updateUserController = async (req, res) => {
+  try {
+    const { firstName, lastName, email, password, address, phone } = req.body;
+    const { id } = req.params;
+    //password
+    if (password && password.length < 6) {
+      return res.json({ error: "Passsword is required and 6 character long" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updatedUser = await userModel.findByIdAndUpdate(
+      id,
+      {
+        firstName: firstName || user.firstName,
+        lastName: lastName || user.lastName,
+        password: hashedPassword || user.password,
+        phone: phone || user.phone,
+        address: address || user.address,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Profile Updated SUccessfully",
+      updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error While Update profile",
+      error,
+    });
+  }
+};
+
 //orders
 export const getOrdersController = async (req, res) => {
   try {
@@ -254,6 +290,25 @@ export const orderStatusController = async (req, res) => {
       success: false,
       message: "Error While Updating Order",
       error,
+    });
+  }
+};
+
+//get all users
+export const getAllUsersController = async (req, res) => {
+  try {
+    const users = await userModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "All Users List",
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Failed to get all users",
     });
   }
 };
