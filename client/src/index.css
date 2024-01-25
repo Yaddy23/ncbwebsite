@@ -196,3 +196,50 @@ input::-webkit-inner-spin-button {
   overflow: hidden;
   padding: 20px 10px;
 }
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  background-size: cover;
+  position: relative;
+  min-height: 60vh;
+  padding: 160px 0 60px 0;
+}
+
+.hero h2 {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: rgba(206, 18, 18, 0.8);
+  font-family: var(--font-primary);
+}
+
+.hero h2 span {
+  color: var(--color-primary);
+}
+
+.hero p {
+  color: #4f4f5a;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.hero .btn-book-a-table {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 50px;
+  transition: 0.5s;
+  color: #ffffff;
+  background: rgba(206, 18, 18, 0.8);
+  box-shadow: 0 8px 28px rgba(206, 18, 18, 0.2);
+}
+
+.hero .btn-book-a-table:hover {
+  background: rgba(206, 18, 18, 0.8);
+  box-shadow: 0 8px 28px rgba(206, 18, 18, 0.45);
+}
