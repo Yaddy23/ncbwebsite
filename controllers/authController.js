@@ -101,39 +101,19 @@ export const loginController = async (req, res) => {
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
-
-    try {
-      const decoded = JWT.verify(token, process.env.JWT_SECRET);
-      res.status(200).send({
-        success: true,
-        message: "Login successful",
-        user: {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          phone: user.phone,
-          address: user.address,
-          role: user.role,
-        },
-        token,
-      });
-    } catch (err) {
-      if (err.name === "TokenExpiredError") {
-        // Token has expired
-        return res.status(500).send({
-          success: false,
-          message: "Login Expired. Login Again",
-          err,
-        });
-      } else {
-        // Token is invalid for some other reason
-        return res.status(500).send({
-          success: false,
-          message: "Invalid token",
-          err,
-        });
-      }
-    }
+    res.status(200).send({
+      success: true,
+      message: "Login successful",
+      user: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        role: user.role,
+      },
+      token,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -243,7 +223,7 @@ export const updateUserController = async (req, res) => {
     );
     res.status(200).send({
       success: true,
-      message: "Profile Updated SUccessfully",
+      message: "Profile Updated Sucessfully",
       updatedUser,
     });
   } catch (error) {
