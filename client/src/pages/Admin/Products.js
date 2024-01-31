@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminMenu from "../../components/AdminMenu";
 import Layout from "../../components/Layout";
+import ncblogo from "../../images/ncblogo.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -43,7 +44,7 @@ const Products = () => {
                       src={`/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
                       height={"200px"}
-                      alt={p.name}
+                      alt={ncblogo}
                     />
                     <div className="card-body">
                       <h5 className="card-title">ISBN: {p.isbn}</h5>

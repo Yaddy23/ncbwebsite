@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import { useSearch } from "../context/search";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
+import ncblogo from "../images/ncblogo.png";
 
 const Search = () => {
   const [values, setValues] = useSearch();
@@ -25,7 +26,8 @@ const Search = () => {
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
-                  alt={p.name}
+                  height={"250px"}
+                  alt={ncblogo}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>

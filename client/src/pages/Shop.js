@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
+import ncblogo from "../images/ncblogo.png";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -168,7 +169,7 @@ const Shop = () => {
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   height={"250px"}
-                  alt={p.name}
+                  alt={ncblogo}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
