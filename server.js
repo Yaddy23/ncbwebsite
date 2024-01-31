@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import cors from "cors";
 import compression from "compression";
+import path from "path";
 //configure env
 dotenv.config();
 
@@ -27,8 +28,13 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 //rest api
+app.use("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 app.get("/", (req, res) => {
   res.status(200).json({ success: true });
 });
