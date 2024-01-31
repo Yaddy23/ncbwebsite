@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import books from "../images/books.webp";
+import { NavLink } from "react-router-dom";
 //import { useAuth } from '../context/auth';
 const HomePage = () => {
   //const [auth, setAuth]= useAuth()
@@ -23,7 +24,9 @@ const HomePage = () => {
               </p>
               <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                 <a href="#book-a-table" class="btn-book-a-table">
-                  Click Here To Shop Now
+                  <NavLink to="/Shop" className="nav-link">
+                    Click Here To Shop Now
+                  </NavLink>
                 </a>
               </div>
             </div>
